@@ -1,61 +1,100 @@
+/* General page styles */
 body {
     font-family: "Courier New", Courier, monospace;
-    background-color: #f0f0f0;
-    color: #000;
+    background-color: #1a1a1a; /* Dark background */
+    color: #00FF00; /* CRT green text */
     margin: 0;
     padding: 0;
+    text-shadow: 0 0 5px #00FF00; /* Glowing text effect */
+    overflow: auto;
 }
+
+/* CRT scan lines effect */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.05),
+        rgba(255, 255, 255, 0.05) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    pointer-events: none; /* Keeps page elements interactive */
+    z-index: 9999;
+    opacity: 0.2; /* Lighter opacity for subtler scan lines */
+}
+
+/* CRT flicker animation */
+@keyframes crt-flicker {
+    0%, 100% {
+        opacity: 0.95;
+    }
+    50% {
+        opacity: 1;
+    }
+}
+
+body {
+    animation: crt-flicker 0.05s infinite;
+}
+
+/* Header styles */
 header {
-    background-color: #000080;
-    color: #fff;
+    background-color: #800000;
+    color: #f9faf9; /* Green text in CRT style */
     text-align: center;
-    padding: 1em;
+    padding: 20px;
+    border-bottom: 3px solid #f8e69f;
+    text-shadow: 0 0 5px #fafafa, 0 0 10px #000000;
 }
+
 header h1 {
     font-size: 2.5em;
     margin: 0;
+    
+    text-shadow: 0 0 10px #800000, 0 0 20px #cbcbcb;
 }
-nav {
-    background-color: #ffcc00;
-    text-align: center;
-    padding: 1em;
-    font-size: 1.2em;
-}
-nav a {
-    color: #000;
-    text-decoration: none;
-    margin: 0 15px;
-}
+
+/* Section and content styles */
 section {
-    padding: 20px;
-    background-color: #ffffff;
-    border: 2px solid #000;
-    margin: 20px auto;
     width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #333333; /* Darker background for the content area */
+    color: #ffffff; /* CRT green text */
+    border: 2px solid #ffcc00;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
 }
-section h2 {
-    font-size: 2em;
-    color: #000080;
+
+h2 {
+    color: #ffffff;
     text-decoration: underline;
+    font-size: 2em;
+    text-shadow: 0 0 10px #800000, 0 0 20px #cbcbcb;
 }
-section p {
-    font-size: 1.1em;
+
+p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    text-shadow: 0 0 5px #ffffff;
 }
+
+/* Footer styles */
 footer {
-    background-color: #000080;
-    color: #fff;
+    background-color: #800000;
+    color: #00FF00; /* Green text */
     text-align: center;
     padding: 10px;
-    font-size: 0.9em;
+    border-top: 3px solid #ffcc00;
     position: fixed;
     width: 100%;
     bottom: 0;
-}
-.blink {
-    animation: blink 1s step-start infinite;
-}
-@keyframes blink {
-    50% {
-        opacity: 0;
-    }
+    font-size: 0.9em;
+    text-shadow: 0 0 5px #00FF00;
 }
